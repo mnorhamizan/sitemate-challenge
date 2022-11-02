@@ -1,27 +1,3 @@
-const components = document.getElementsByClassName("click-me");
-for (const component of components) {
-    const button = component.querySelector("button");
-    const prompt = component.getAttribute("data-prompt");
-    const truthy = component.getAttribute("data-result-truthy");
-    const falsy = component.getAttribute("data-result-falsy");
-    const paragraph = component.querySelector("p");
-
-    button.addEventListener("click", async () => {
-        const dialog = new ConfirmDialog({
-            trueButtonText: "Yes",
-            falseButtonText: "Cancel",
-            questionText: prompt,
-        });
-
-        const truthyConfirmation = await dialog.confirm();
-        if (truthyConfirmation) {
-            paragraph.innerHTML = truthy;
-        } else {
-            paragraph.innerHTML = falsy;
-        }
-    });
-}
-
 class ConfirmDialog {
     constructor({ questionText, trueButtonText, falseButtonText }) {
         this.questionText = questionText || "Are you sure?";
